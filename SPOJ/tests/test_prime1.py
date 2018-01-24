@@ -675,6 +675,14 @@ class TestPrime1(TestCase):
               "\n99839\n99859\n99871\n99877\n99881\n99901\n99907\n99923\n99929\n99961\n99971\n99989\n99991\n"
         assert(find_prime_between(1, 100000) == res)
 
+    '''
+    def test_find_prime_between_born_min1(self):
+        for i in range(0, 1000):
+            old = time.clock()
+            find_prime_between(100000 * i, 100000 * i + 100000)
+            second = time.clock() - old
+            print str(100000 * i + 100000) + " " + str(second)
+'''
     def test_find_prime_between_born_mid(self):
         res = "499950019\n499950041\n499950049\n499950091\n499950109\n499950131\n499950133\n499950137\n499950151" \
               "\n499950163\n499950203\n499950239\n499950257\n499950271\n499950277\n499950289\n499950301\n499950323" \
