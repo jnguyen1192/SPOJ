@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import sys
 import time
 from math import *
@@ -14,7 +13,7 @@ def prime1():
         res = ""
         while j < int(twin[1]) + 1:
             if is_prime(j):
-                res += str(int(j))+"\n"
+                res += str(j)+"\n"
             j += 1
         print res
         second = time.clock() - old
@@ -47,23 +46,3 @@ def is_prime(num):
     #Other prime
     return all(num % i for i in mrange(32001, int(sqrt(num)) + 1, 2))
 
-def primes(x , y):
-    l = [2]# list of prime numbers
-    for n in range(3, y+1, 2): # iterations over odd numbers
-        isprime = True
-        for e in l:
-            if n % e == 0:
-                isprime = False
-                break
-        if isprime:
-            l.append(n)
-
-    return [e for e in l if e >= x]
-
-
-
-def main():
-    prime1()
-
-if __name__ == "__main__":
-    main()
