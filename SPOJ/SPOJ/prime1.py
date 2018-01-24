@@ -2,6 +2,14 @@ import sys
 import time
 from math import *
 
+def find_prime_between(start, end):
+    j = int(start)
+    res = ""
+    while j < int(end) + 1:
+        if is_prime(j):
+            res += str(j) + "\n"
+        j += 1
+    return res
 
 def prime1():
     nbline = input()
@@ -9,13 +17,7 @@ def prime1():
         string = raw_input()
         old = time.clock()
         twin = string.split()
-        j = int(twin[0])
-        res = ""
-        while j < int(twin[1]) + 1:
-            if is_prime(j):
-                res += str(j)+"\n"
-            j += 1
-        print res
+        print find_prime_between(twin[0], twin[1])
         second = time.clock() - old
         print second
 
