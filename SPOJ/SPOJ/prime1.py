@@ -12,8 +12,8 @@ def find_prime_between(start, end):
 
 
 def prime1():
-    nbline = input()
-    for i in range(0, nbline):
+    nb_line = input()
+    for i in range(0, nb_line):
         string = raw_input()
         twin = string.split()
         print find_prime_between(twin[0], twin[1])
@@ -35,6 +35,7 @@ def get_low_primes(num):
         j += 1
     return res
 
+
 def is_prime(num):
     # Constraints
     if num == 2 or num == 5:
@@ -53,14 +54,12 @@ def is_prime(num):
 
     if num in lowPrimes:
         return True
-
     # See if any of the low prime numbers can divide num
     for prime in lowPrimes:
         if num % prime == 0:
             return False
     # It s a prime number
     return True
-    #return all(num % i for i in m_range(begin, int(sqrt(num)) + 1, 2))
 
 
 midPrimes = get_low_primes(23101)
