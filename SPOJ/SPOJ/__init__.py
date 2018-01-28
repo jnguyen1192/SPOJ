@@ -1,9 +1,9 @@
 #!/usr/bin/python
-from prime1 import prime1
+from print1 import print1
 
 
 def main():
-    prime1()
+    print1()
 
 if __name__ == "__main__":
     main()
