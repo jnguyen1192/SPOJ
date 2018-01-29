@@ -47,9 +47,10 @@ def sieveofatkin(start, limit):
 def find_prime_between(start, end):
     j = int(start)
     #Reduc time test all odd
+    res = ""
     if j == 2:
         j += 1
-    res = ""
+        res += str(2) + "\n"
     if j % 2 == 0:
         j += 1
     while j < int(end) + 1:
@@ -151,11 +152,17 @@ def primesRange(lo, hi, delta):
 
     def qReset(p, q):
         return (q - delta) % p
-
     res = ""
     output, sieve = [], [True] * delta
     ps = primes(int(sqrt(hi)))[1:]
     qs = map(qInit, ps)
+    # Dirty 1
+    if lo == 2:
+        output.append(2)
+    # Dirty 2
+    if lo < int(sqrt(hi)):
+        for i in ps:
+            output.append(i)
     while lo < hi:
         for i in range(0, delta):
             sieve[i] = True
@@ -165,7 +172,10 @@ def primesRange(lo, hi, delta):
         qs = map(qReset, ps, qs)
         for i, t in zip(range(0, delta), range(lo + 1, hi, 2)):
             if sieve[i]:
-                output.append(t)
+                if t % 2 == 0:
+                    output.append(t + 1)
+                else:
+                    output.append(t)
         lo += (2 * delta)
     for i in output:
         res += str(i) + "\n"
