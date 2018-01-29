@@ -62,10 +62,10 @@ def find_prime_between(start, end):
 def print1():
     from sys import stdin, stdout
     nb_line = stdin.readline()
-    for i in range(0, nb_line):
+    for i in range(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
-        stdout.write(find_prime_between(twin[0], twin[1]))
+        stdout.write(find_prime_between(int(twin[0]), (twin[1])))
 
 
 def m_range(start, stop, step):
@@ -83,6 +83,25 @@ def get_low_primes(num):
             res.append(j)
         j += 1
     return res
+
+
+def are_prime(start, end):
+    list = [True] * (end - start)
+    primesrootlastnumber = get_low_primes(sqrt(end))
+    for i in primesrootlastnumber:
+        for j in range(0, (end - start)):
+            if not list[j]:
+                continue
+            if (j + start) % i == 0:
+                list[j] = False
+    primesfind = []
+    for i in primesrootlastnumber:
+        if i >= start:
+            primesfind.append(i)
+    for i in range(0, (end - start)):
+        if list[i]:
+            primesfind.append(i + start)
+    return primesfind
 
 
 def is_prime(num):
@@ -114,3 +133,41 @@ midPrimes = get_low_primes(23101)
 bigPrimes = get_low_primes(32101)
 limitPrimes = get_low_primes(46441)
 #sqrt(2147483647) + 101
+
+
+def primes(n):
+    ps, sieve = [], [True] * (n)
+    for p in range(2, n):
+        if sieve[p]:
+            ps.append(p)
+            for i in range(p * p, n, p):
+                sieve[i] = False
+    return ps
+
+
+def primesRange(lo, hi, delta):
+    def qInit(p):
+        return ((lo + p + 1) / -2) % p
+
+    def qReset(p, q):
+        return (q - delta) % p
+
+    res = ""
+    output, sieve = [], [True] * delta
+    ps = primes(int(sqrt(hi)))[1:]
+    qs = map(qInit, ps)
+    while lo < hi:
+        for i in range(0, delta):
+            sieve[i] = True
+        for p, q in zip(ps, qs):
+            for i in range(q, delta, p):
+                sieve[i] = False
+        qs = map(qReset, ps, qs)
+        for i, t in zip(range(0, delta), range(lo + 1, hi, 2)):
+            if sieve[i]:
+                output.append(t)
+        lo += (2 * delta)
+    for i in output:
+        res += str(i) + "\n"
+    return res[:-1]
+#https://ideone.com/iHYr1f
