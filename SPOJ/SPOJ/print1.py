@@ -22,8 +22,7 @@ def primes(n):
     for p in range(2, n):
         if sieve[p]:
             ps.append(p)
-            for i in range(p * p, n, p):
-                sieve[i] = False
+            sieve[p * p::p] = [False] * ((n - p * p - 1) // p + 1)
     return ps
 
 
