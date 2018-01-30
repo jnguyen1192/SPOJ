@@ -68,8 +68,7 @@ def primesRange(lo, hi, delta):
         for i in range(0, delta):
             sieve[i] = True
         for p, q in zip(ps, qs):
-            for i in range(q, delta, p):
-                sieve[i] = False
+            sieve[q::p] = [False] * ((delta - q - 1) // p + 1)
         qs = map(qReset, ps, qs)
         for i, t in zip(range(0, delta), range(lo + 1, hi, 2)):
             if sieve[i]:
@@ -83,3 +82,4 @@ def primesRange(lo, hi, delta):
         lo += (2 * delta)
     return res
 #https://ideone.com/iHYr1f
+#https://codereview.stackexchange.com/questions/42420/sieve-of-eratosthenes-python

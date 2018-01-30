@@ -22845,8 +22845,8 @@ class TestPrint1(TestCase):
         assert (primesRange(518000000, 519000000, 1000000) == res)
         # 2146483647 to  2147483647
 
-    def test_primesRange_primes2(self):
-        print primes2(1000000)
+    def test_test(self):
+        primesRange(2, 100000000, 10000000)
 
     def test_primesRange_born_limit(self):
         res = "2146483657\n2146483663\n2146483673\n2146483681\n2146483687\n2146483753\n2146483777\n2146483793" \
