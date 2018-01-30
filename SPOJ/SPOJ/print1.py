@@ -63,22 +63,16 @@ def find_prime_between(start, end):
 def print1():
     from sys import stdin, stdout
     nb_line = stdin.readline()
-    max = 0
-    min = 2147483647
+    res = ""
     t0 = time.clock()
     for i in range(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
-        if int(twin[0]) < min:
-            min = int(twin[0])
-        if int(twin[1]) > max:
-            max = int(twin[1])
         stdout.write(primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0])))
     # optimisation pour la fusion de boucle
     t = time.clock() - t0
     print str(t) + " seconds"
-    print "min " + str(min)
-    print "max " + str(max)
+
 
 def m_range(start, stop, step):
     while start < stop:
