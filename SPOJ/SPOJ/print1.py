@@ -65,8 +65,7 @@ def primesRange(lo, hi, delta):
         for i in ps:
             res += str(i) + "\n"
     while lo < hi:
-        for i in range(0, delta):
-            sieve[i] = True
+        sieve[0::1] = [True] * ((delta - 0 - 1) // 1 + 1)
         for p, q in zip(ps, qs):
             sieve[q::p] = [False] * ((delta - q - 1) // p + 1)
         qs = map(qReset, ps, qs)
