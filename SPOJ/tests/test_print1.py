@@ -61,6 +61,7 @@ class TestPrint1(TestCase):
         assert (primesRange(3, 19, 1000000) == res)
 
 
+    @unittest.skip("")
     def test_primesRange_3_to_25(self):
         res = "3\n5\n7\n11\n13\n17\n19\n23\n25\n"
         #print primesRange(3, 25, 1000000)

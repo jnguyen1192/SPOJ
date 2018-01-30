@@ -156,6 +156,7 @@ def primes(n):
                 sieve[i] = False
     return ps
 
+arrayPrime = primes(46441)
 
 def primesRange(lo, hi, delta):
     # Dirty 1
@@ -167,7 +168,7 @@ def primesRange(lo, hi, delta):
         return (q - delta) % p
     res = ""
     output, sieve = [], [True] * delta
-    ps = primes(int(sqrt(hi)))[1:]
+    ps = arrayPrime[1:]
     # Dirty 2
     if 9 < hi < 16:
         ps = [3]
