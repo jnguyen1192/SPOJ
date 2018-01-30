@@ -66,7 +66,7 @@ def print1():
     for i in range(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
-        stdout.write(find_prime_between(int(twin[0]), (twin[1])))
+        stdout.write(primesRange(int(twin[0]), int(twin[1]), 1000000))
 
 
 def m_range(start, stop, step):
@@ -147,6 +147,7 @@ def primes(n):
 
 
 def primesRange(lo, hi, delta):
+    # Dirty 1
     hi += 1
     def qInit(p):
         return ((lo + p + 1) / -2) % p
@@ -156,13 +157,17 @@ def primesRange(lo, hi, delta):
     res = ""
     output, sieve = [], [True] * delta
     ps = primes(int(sqrt(hi)))[1:]
+    # Dirty 2
     if 9 < hi < 16:
         ps = [3]
     qs = map(qInit, ps)
-    # Dirty 1
+    # Dirty 3
     if lo == 2:
         output.append(2)
-    # Dirty 2
+    # Dirty 4
+    if lo == 3 and hi < 15:
+        output.append(3)
+    # Dirty 5
     if lo < int(sqrt(hi)):
         for i in ps:
             output.append(i)
@@ -181,6 +186,7 @@ def primesRange(lo, hi, delta):
                     output.append(t)
         lo += (2 * delta)
     for i in output:
-        res += str(i) + "\n"
+        if i <= hi-1:
+            res += str(i) + "\n"
     return res[:-1]
 #https://ideone.com/iHYr1f
