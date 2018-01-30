@@ -66,8 +66,8 @@ def print1():
     for i in range(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
-        stdout.write(primesRange(int(twin[0]), int(twin[1]), 1000000))
-
+        stdout.write(primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0])))
+    # optimisation pour la fusion de boucle
 
 def m_range(start, stop, step):
     while start < stop:
@@ -137,7 +137,7 @@ limitPrimes = get_low_primes(46441)
 
 
 def primes(n):
-    ps, sieve = [], [True] * (n)
+    ps, sieve = [], [True] * n
     for p in range(2, n):
         if sieve[p]:
             ps.append(p)
@@ -188,5 +188,5 @@ def primesRange(lo, hi, delta):
     for i in output:
         if i <= hi-1:
             res += str(i) + "\n"
-    return res[:-1]
+    return res
 #https://ideone.com/iHYr1f
