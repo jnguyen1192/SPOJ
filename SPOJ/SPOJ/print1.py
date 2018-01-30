@@ -63,11 +63,22 @@ def find_prime_between(start, end):
 def print1():
     from sys import stdin, stdout
     nb_line = stdin.readline()
+    max = 0
+    min = 2147483647
+    t0 = time.clock()
     for i in range(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
+        if int(twin[0]) < min:
+            min = int(twin[0])
+        if int(twin[1]) > max:
+            max = int(twin[1])
         stdout.write(primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0])))
     # optimisation pour la fusion de boucle
+    t = time.clock() - t0
+    print str(t) + " seconds"
+    print "min " + str(min)
+    print "max " + str(max)
 
 def m_range(start, stop, step):
     while start < stop:
@@ -163,14 +174,14 @@ def primesRange(lo, hi, delta):
     qs = map(qInit, ps)
     # Dirty 3
     if lo == 2:
-        output.append(2)
+        res += str(2) + "\n"
     # Dirty 4
     if lo == 3 and hi < 15:
-        output.append(3)
+        res += str(3) + "\n"
     # Dirty 5
     if lo < int(sqrt(hi)):
         for i in ps:
-            output.append(i)
+            res += str(i) + "\n"
     while lo < hi:
         for i in range(0, delta):
             sieve[i] = True
@@ -180,13 +191,13 @@ def primesRange(lo, hi, delta):
         qs = map(qReset, ps, qs)
         for i, t in zip(range(0, delta), range(lo + 1, hi, 2)):
             if sieve[i]:
-                if t % 2 == 0:
-                    output.append(t + 1)
-                else:
-                    output.append(t)
+                if t <= hi - 1:
+                    if t % 2 == 0:
+                        res += str(t + 1) + "\n"
+                        #output.append(t + 1)
+                    else:
+                        res += str(t) + "\n"
+                        #output.append(t)
         lo += (2 * delta)
-    for i in output:
-        if i <= hi-1:
-            res += str(i) + "\n"
     return res
 #https://ideone.com/iHYr1f
