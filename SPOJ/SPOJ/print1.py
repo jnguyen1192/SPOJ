@@ -147,6 +147,7 @@ def primes(n):
 
 
 def primesRange(lo, hi, delta):
+    hi += 1
     def qInit(p):
         return ((lo + p + 1) / -2) % p
 
@@ -155,6 +156,8 @@ def primesRange(lo, hi, delta):
     res = ""
     output, sieve = [], [True] * delta
     ps = primes(int(sqrt(hi)))[1:]
+    if 9 < hi < 16:
+        ps = [3]
     qs = map(qInit, ps)
     # Dirty 1
     if lo == 2:
