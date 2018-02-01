@@ -40,6 +40,7 @@ def primesRange(lo, hi, delta):
 
     def qReset(p, q):
         return (q - delta) % p
+    listres = []
     res = ""
     output, sieve = [], [True] * delta
     if hi < 529000000:
@@ -56,14 +57,14 @@ def primesRange(lo, hi, delta):
     qs = map(qInit, ps)
     # Dirty 3
     if lo == 2:
-        res += str(2) + "\n"
+        listres.append(str(2) + "\n")
     # Dirty 4
     if lo == 3 and hi < 15:
-        res += str(3) + "\n"
+        listres.append(str(3) + "\n")
     # Dirty 5
     if lo < int(hi ** .5):
         for i in ps:
-            res += str(i) + "\n"
+            listres.append(str(i) + "\n")
     while lo < hi:
         sieve[0::1] = [True] * ((delta - 0 - 1) // 1 + 1)
         for p, q in zip(ps, qs):
@@ -73,12 +74,13 @@ def primesRange(lo, hi, delta):
             if sieve[i]:
                 if t <= hi - 1:
                     if t % 2 == 0:
-                        res += str(t + 1) + "\n"
+                        listres.append(str(t + 1) + "\n")
                         #output.append(t + 1)
                     else:
-                        res += str(t) + "\n"
+                        listres.append(str(t) + "\n")
                         #output.append(t)
         lo += (2 * delta)
+    res = res.join(listres)
     return res
 #https://ideone.com/iHYr1f
 #https://codereview.stackexchange.com/questions/42420/sieve-of-eratosthenes-python
