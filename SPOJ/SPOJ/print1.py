@@ -6,7 +6,7 @@ def print1():
     nb_line = stdin.readline()
     t0 = time.clock()
     res = ""
-    for i in range(0, int(nb_line)):
+    for i in xrange(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
         res += primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0]))
@@ -67,7 +67,7 @@ def primesRange(lo, hi, delta):
         for p, q in zip(ps, qs):
             sieve[q::p] = [False] * ((delta - q - 1) // p + 1)
         qs = map(qReset, ps, qs)
-        for i, t in zip(xrange(0, delta), range(lo + 1, hi, 2)):
+        for i, t in zip(xrange(0, delta), xrange(lo + 1, hi, 2)):
             if sieve[i]:
                 if t <= hi - 1:
                     if t % 2 == 0:
