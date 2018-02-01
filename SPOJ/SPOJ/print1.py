@@ -1,9 +1,8 @@
-from math import *
 import time
+from sys import stdin, stdout
 
 
 def print1():
-    from sys import stdin, stdout
     nb_line = stdin.readline()
     t0 = time.clock()
     res = ""
@@ -19,7 +18,7 @@ def print1():
 
 def primes(n):
     ps, sieve = [], [True] * n
-    for p in range(2, n):
+    for p in xrange(2, n):
         if sieve[p]:
             ps.append(p)
             sieve[p * p::p] = [False] * ((n - p * p - 1) // p + 1)
@@ -60,7 +59,7 @@ def primesRange(lo, hi, delta):
     if lo == 3 and hi < 15:
         res += str(3) + "\n"
     # Dirty 5
-    if lo < int(sqrt(hi)):
+    if lo < int(hi ** .5):
         for i in ps:
             res += str(i) + "\n"
     while lo < hi:
@@ -68,7 +67,7 @@ def primesRange(lo, hi, delta):
         for p, q in zip(ps, qs):
             sieve[q::p] = [False] * ((delta - q - 1) // p + 1)
         qs = map(qReset, ps, qs)
-        for i, t in zip(range(0, delta), range(lo + 1, hi, 2)):
+        for i, t in zip(xrange(0, delta), range(lo + 1, hi, 2)):
             if sieve[i]:
                 if t <= hi - 1:
                     if t % 2 == 0:
