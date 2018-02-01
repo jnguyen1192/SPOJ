@@ -6,10 +6,12 @@ def print1():
     nb_line = stdin.readline()
     t0 = time.clock()
     res = ""
+    listres = []
     for i in xrange(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
-        res += primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0]))
+        listres.append(primesRange(int(twin[0]), int(twin[1]), int(twin[1]) - int(twin[0])))
+    res = res.join(listres)
     # optimisation pour la fusion de boucle
     stdout.write(res)
     t = time.clock() - t0
