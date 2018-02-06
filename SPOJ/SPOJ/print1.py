@@ -88,6 +88,7 @@ def primesRange(lo, hi, delta):
         lo += (2 * delta)
     res = res.join(listres)
     return res
+#https://stackoverflow.com/questions/10249378/segmented-sieve-of-eratosthenes
 #https://ideone.com/iHYr1f
 #https://codereview.stackexchange.com/questions/42420/sieve-of-eratosthenes-python
 
