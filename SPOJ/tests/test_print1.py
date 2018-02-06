@@ -28675,6 +28675,7 @@ class TestPrint1(TestCase):
         assert (primesRange(2146483647, 2147483646, 1000000) == res)
         # 2146483647 to  2147483647
 
-#    def test_test(self):
-#        primesRange(2, 100000000, 10000000)
+    def test_test(self):
+        print primesRange(2, 1000002, 1000000)
+
 

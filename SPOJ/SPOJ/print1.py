@@ -4,9 +4,9 @@ from sys import stdin, stdout
 
 def print1():
     nb_line = stdin.readline()
-    t0 = time.clock()
     res = ""
     listres = []
+    t0 = time.clock()
     for i in xrange(0, int(nb_line)):
         string = stdin.readline()
         twin = string.split()
@@ -19,13 +19,15 @@ def print1():
 
 
 def primes(n):
-    ps, sieve = [], [True] * n
-    for p in xrange(2, n):
-        if sieve[p]:
-            ps.append(p)
-            sieve[p * p::p] = [False] * ((n - p * p - 1) // p + 1)
-    return ps
-
+    n, correction = n-n%6+6, 2-(n%6>1)
+    sieve = [True] * (n/3)
+    for i in xrange(1,int(n**0.5)/3+1):
+      if sieve[i]:
+        k=3*i+1|1
+        sieve[      k*k/3      ::2*k] = [False] * ((n/6-k*k/6-1)/k+1)
+        sieve[k*(k-2*(i&1)+4)/3::2*k] = [False] * ((n/6-k*(k-2*(i&1)+4)/6-1)/k+1)
+    return [2,3] + [3*i+1|1 for i in xrange(1,n/3-correction) if sieve[i]]
+#https://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n
 
 arrayMidPrimes = primes(23101)
 arrayBigPrimes = primes(32101)
@@ -64,12 +66,16 @@ def primesRange(lo, hi, delta):
     # Dirty 5
     if lo < int(hi ** .5):
         for i in ps:
-            listres.append(str(i) + "\n")
+            if i < hi:
+                listres.append(str(i) + "\n")
     while lo < hi:
+        # Prepare un tableau de 0 a la fin a true
         sieve[0::1] = [True] * ((delta - 0 - 1) // 1 + 1)
+        # Lorsqu il y a multiple mettre faux
         for p, q in zip(ps, qs):
             sieve[q::p] = [False] * ((delta - q - 1) // p + 1)
         qs = map(qReset, ps, qs)
+        # Afficher true
         for i, t in zip(xrange(0, delta), xrange(lo + 1, hi, 2)):
             if sieve[i]:
                 if t <= hi - 1:
@@ -84,3 +90,4 @@ def primesRange(lo, hi, delta):
     return res
 #https://ideone.com/iHYr1f
 #https://codereview.stackexchange.com/questions/42420/sieve-of-eratosthenes-python
+
