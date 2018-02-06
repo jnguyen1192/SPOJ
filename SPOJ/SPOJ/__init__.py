@@ -1,9 +1,9 @@
 #!/usr/bin/python
-from onp import onp
+from palin import palin
 
 
 def main():
-    onp()
+    palin()
 
 if __name__ == "__main__":
     main()
