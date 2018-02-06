@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from sys import stdin, stdout
 
 
@@ -41,9 +40,3 @@ def onp():
         expression = stdin.readline()
         stdout.write(analyse_onp(expression))
         nb_line -= 1
-
-def main():
-    onp()
-
-if __name__ == "__main__":
-    main()
