@@ -1,4 +1,5 @@
 from sys import stdin, stdout
+import time
 
 
 def add1tostring(number):
@@ -30,6 +31,19 @@ def is_palin(number):
     return True
 
 
+def inf_str_int(str1, str2):
+    length = str1.__len__()
+    for i in xrange(0, length):
+        print str1[length-1-i]
+        print str2[i]
+        if int(str1[length - 1 - i]) < int(str2[i]):
+            return True
+        if int(str1[length-1-i]) > int(str2[i]):
+            return False
+
+    return True
+
+
 def find_next_palin(number):
     length = number.__len__()
     sub = number[0:length/2]
@@ -39,22 +53,31 @@ def find_next_palin(number):
     if length & 1:
         odd = number[length/2]
         end = number[length / 2 + 1:length]
-        if sub < end:
+        if inf_str_int(sub, end):
             odd = str(int(odd) + 1)
+        else:
+            print sub
+            print end
     else:
-        if sub[::-1] < end:
-            sub = str(int(sub) + 1)
+        if inf_str_int(sub, end):
+            sub = add1tostring(sub)
             rev = sub[::-1]
     return sub + odd + rev
 
 
 def analyse_palin(expression):
+    t0 = time.clock()
     res = add1tostring(expression[:-1])
+    t = time.clock() - t0
+    print t
+    t0 = time.clock()
     pal = "112"
     while True:
         if is_palin(pal) and res.find("0") == -1 and pal != expression[:-1]:
             break
         pal = find_next_palin(res)
+        t = time.clock() - t0
+        print t
         res = add1tostring(res)
     pal += "\n"
     return pal
