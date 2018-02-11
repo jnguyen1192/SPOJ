@@ -5,39 +5,60 @@ from sys import stdin, stdout
 def add1tostring(number):
     res = ""
     retained = 1
-    nb_char = number.__len__()-2
-    nb_char += 1
+    nb_char = number.__len__()-1
+    zero = 0
     while nb_char > -1:
         if int(number[nb_char]) == 9 and retained == 1:
             res += str(0)
+            zero += 1
         elif retained == 1:
             res += str(int(number[nb_char]) + 1)
             retained -= 1
         else:
             res += str(int(number[nb_char]))
         nb_char -= 1
+    # Case +1 digit
+    if zero == number.__len__():
+        res = res + "1"
     return res[::-1]
 
 
-def analyse_palin(expression):
-    res = ""
-    length = expression.__len__()-1
+def is_palin(number):
+    length = number.__len__()
+    for i in xrange(0, length/2):
+        if number[i] != number[length-1-i]:
+            return False
+    return True
+
+
+def find_next_palin(number):
+    length = number.__len__()
+    sub = number[0:length/2]
+    odd = ""
+    rev = sub[::-1]
+    end = number[length/2:length]
     if length & 1:
-        for c in xrange(0, length/2 + 1):
-            res += expression[c]
-        if int(expression[length / 2 - 1]) < int(expression[length / 2]) or int(expression[length / 2]) == 0:
-            res = add1tostring(res)
-        for c in reversed(res[:-1]):
-            res += c
+        odd = number[length/2]
+        end = number[length / 2 + 1:length]
+        if sub < end:
+            odd = str(int(odd) + 1)
     else:
-        for c in xrange(0, length/2):
-            res += expression[c]
-        if int(expression[length/2-1]) < int(expression[length/2]):
-            res = add1tostring(res)
-        for c in reversed(res):
-            res += c
-    res += "\n"
-    return res
+        if sub[::-1] < end:
+            sub = str(int(sub) + 1)
+            rev = sub[::-1]
+    return sub + odd + rev
+
+
+def analyse_palin(expression):
+    res = add1tostring(expression[:-1])
+    pal = "112"
+    while True:
+        if is_palin(pal) and res.find("0") == -1 and pal != expression[:-1]:
+            break
+        pal = find_next_palin(res)
+        res = add1tostring(res)
+    pal += "\n"
+    return pal
 
 
 def palin():
