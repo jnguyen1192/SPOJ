@@ -5,11 +5,10 @@ from sys import stdin, stdout
 def add1tostring(number):
     res = ""
     retained = 1
-    nb_char = len(number) / 2
-    if len(number) & 1:
-        nb_char += 1
+    nb_char = number.__len__()-2
+    nb_char += 1
     while nb_char > -1:
-        if int(number[nb_char]) == 9:
+        if int(number[nb_char]) == 9 and retained == 1:
             res += str(0)
         elif retained == 1:
             res += str(int(number[nb_char]) + 1)
@@ -22,7 +21,7 @@ def add1tostring(number):
 
 def analyse_palin(expression):
     res = ""
-    length = len(expression)-1
+    length = expression.__len__()-1
     if length & 1:
         for c in xrange(0, length/2 + 1):
             res += expression[c]
