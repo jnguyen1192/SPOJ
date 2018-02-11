@@ -44,7 +44,7 @@ def find_next_palin(number):
             odd = str(int(odd) + 1)
     else:
         if sub[::-1] < end:
-            sub = str(int(sub) + 1)
+            sub = add1tostring(sub)
             rev = sub[::-1]
     return sub + odd + rev
 

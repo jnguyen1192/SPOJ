@@ -1,6 +1,7 @@
 from unittest import *
 
 from SPOJ.palin import *
+from SPOJ.generatorpalin import *
 
 
 class TestPalin(TestCase):
@@ -128,3 +129,6 @@ class TestPalin(TestCase):
     def test_is_palin_5(self):
         input = "818"
         assert (is_palin(input))
+
+    def test_generatorpalin(self):
+        generate()
