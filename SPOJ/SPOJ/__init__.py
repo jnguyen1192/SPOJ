@@ -20,6 +20,7 @@ def add1tostring(number):
     # Case +1 digit
     if zero == number.__len__():
         res = res + "1"
+    #Modif only car we want
     return res[::-1]
 
 
@@ -28,6 +29,17 @@ def is_palin(number):
     for i in xrange(0, length/2):
         if number[i] != number[length-1-i]:
             return False
+    return True
+
+
+def inf_str_int(str1, str2):
+    length = str1.__len__()
+    for i in xrange(0, length):
+        if int(str1[length - 1 - i]) < int(str2[i]):
+            return True
+        if int(str1[length-1-i]) > int(str2[i]):
+            return False
+
     return True
 
 
@@ -40,10 +52,13 @@ def find_next_palin(number):
     if length & 1:
         odd = number[length/2]
         end = number[length / 2 + 1:length]
-        if sub < end:
+        if inf_str_int(sub, end):
             odd = str(int(odd) + 1)
+        else:
+            print sub
+            print end
     else:
-        if sub[::-1] < end:
+        if inf_str_int(sub, end):
             sub = add1tostring(sub)
             rev = sub[::-1]
     return sub + odd + rev

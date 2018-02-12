@@ -1,26 +1,23 @@
 from sys import stdin, stdout
-import time
 
 
 def add1tostring(number):
-    res = ""
+    s = list(number)
     retained = 1
     nb_char = number.__len__()-1
     zero = 0
-    while nb_char > -1:
-        if int(number[nb_char]) == 9 and retained == 1:
-            res += str(0)
+    while retained == 1 and nb_char >= 0:
+        s[nb_char] = str(int(number[nb_char]) + 1)
+        retained = 0
+        if s[nb_char] == '10':
+            s[nb_char] = '0'
+            retained = 1
+            nb_char -= 1
             zero += 1
-        elif retained == 1:
-            res += str(int(number[nb_char]) + 1)
-            retained -= 1
-        else:
-            res += str(int(number[nb_char]))
-        nb_char -= 1
     # Case +1 digit
     if zero == number.__len__():
-        res = res + "1"
-    return res[::-1]
+        s = ['1'] + s
+    return "".join(s)
 
 
 def is_palin(number):
@@ -34,8 +31,6 @@ def is_palin(number):
 def inf_str_int(str1, str2):
     length = str1.__len__()
     for i in xrange(0, length):
-        print str1[length-1-i]
-        print str2[i]
         if int(str1[length - 1 - i]) < int(str2[i]):
             return True
         if int(str1[length-1-i]) > int(str2[i]):
@@ -55,9 +50,6 @@ def find_next_palin(number):
         end = number[length / 2 + 1:length]
         if inf_str_int(sub, end):
             odd = str(int(odd) + 1)
-        else:
-            print sub
-            print end
     else:
         if inf_str_int(sub, end):
             sub = add1tostring(sub)
@@ -66,18 +58,12 @@ def find_next_palin(number):
 
 
 def analyse_palin(expression):
-    t0 = time.clock()
     res = add1tostring(expression[:-1])
-    t = time.clock() - t0
-    print t
-    t0 = time.clock()
     pal = "112"
     while True:
         if is_palin(pal) and res.find("0") == -1 and pal != expression[:-1]:
             break
         pal = find_next_palin(res)
-        t = time.clock() - t0
-        print t
         res = add1tostring(res)
     pal += "\n"
     return pal

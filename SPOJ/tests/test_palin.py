@@ -18,7 +18,6 @@ class TestPalin(TestCase):
     def test_analyse_palin_3(self):
         input = "2933\n"
         res = "2992\n"
-        print analyse_palin(input)
         assert (analyse_palin(input) == res)
 
     def test_analyse_palin_4(self):
@@ -64,7 +63,6 @@ class TestPalin(TestCase):
     def test_analyse_palin_12(self):
         input = "123456789123456789123456789\n"
         res =   "123456789123464321987654321\n"
-        print analyse_palin(input)
         assert (analyse_palin(input) == res)
 
     def test_analyse_palin_13(self):
