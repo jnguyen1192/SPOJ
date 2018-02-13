@@ -67,12 +67,11 @@ def clean_begin_zero(number):
 
 
 def find_next_palin(number):
-    # exception 9
-    if except_digit(number, '9'):
-        return add1tostring(add1tostring(number))
     if except_digit(number, '0'):
         return '1'
     number = clean_begin_zero(number)
+    if except_digit(number, '9'):
+        return add1tostring(add1tostring(number))
     length = number.__len__()
     sub = number[0:length/2]
     odd = ""
