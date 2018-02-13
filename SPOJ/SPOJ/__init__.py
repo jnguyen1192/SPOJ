@@ -3,25 +3,22 @@ from sys import stdin, stdout
 
 
 def add1tostring(number):
-    res = ""
+    s = list(number)
     retained = 1
     nb_char = number.__len__()-1
     zero = 0
-    while nb_char > -1:
-        if int(number[nb_char]) == 9 and retained == 1:
-            res += str(0)
+    while retained == 1 and nb_char >= 0:
+        s[nb_char] = str(int(number[nb_char]) + 1)
+        retained = 0
+        if s[nb_char] == '10':
+            s[nb_char] = '0'
+            retained = 1
+            nb_char -= 1
             zero += 1
-        elif retained == 1:
-            res += str(int(number[nb_char]) + 1)
-            retained -= 1
-        else:
-            res += str(int(number[nb_char]))
-        nb_char -= 1
     # Case +1 digit
     if zero == number.__len__():
-        res = res + "1"
-    #Modif only car we want
-    return res[::-1]
+        s = ['1'] + s
+    return "".join(s)
 
 
 def is_palin(number):
@@ -39,7 +36,6 @@ def inf_str_int(str1, str2):
             return True
         if int(str1[length-1-i]) > int(str2[i]):
             return False
-
     return True
 
 
@@ -47,31 +43,29 @@ def find_next_palin(number):
     length = number.__len__()
     sub = number[0:length/2]
     odd = ""
-    rev = sub[::-1]
     end = number[length/2:length]
     if length & 1:
         odd = number[length/2]
         end = number[length / 2 + 1:length]
         if inf_str_int(sub, end):
             odd = str(int(odd) + 1)
-        else:
-            print sub
-            print end
+            if odd == '10':
+                odd = '0'
+                sub = add1tostring(sub)
     else:
         if inf_str_int(sub, end):
             sub = add1tostring(sub)
-            rev = sub[::-1]
-    return sub + odd + rev
+    return sub + odd + sub[::-1]
 
 
 def analyse_palin(expression):
     res = add1tostring(expression[:-1])
-    pal = "112"
     while True:
-        if is_palin(pal) and res.find("0") == -1 and pal != expression[:-1]:
-            break
         pal = find_next_palin(res)
         res = add1tostring(res)
+        if is_palin(pal) and pal != expression[:-1]:
+            break
+        # Augmenter l incrementation au bon endroit pour gagner du temps
     pal += "\n"
     return pal
 
@@ -79,10 +73,12 @@ def analyse_palin(expression):
 def palin():
     nb_line = int(stdin.readline())
     res = ""
+    listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        res += analyse_palin(expression)
+        listres.append(analyse_palin(expression))
         nb_line -= 1
+    res = res.join(listres)
     stdout.write(res)
 
 
