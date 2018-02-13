@@ -46,10 +46,33 @@ def except_nine(number):
     res = res.join(listres)
     return number == res
 
+
+def except_digit(number, digit):
+    res = ""
+    listres = []
+    for i in number:
+        listres.append(digit)
+    res = res.join(listres)
+    return number == res
+
+
+def clean_begin_zero(number):
+    count = 0
+    for i in number:
+        if i == '0':
+            count += 1
+        else:
+            break
+    return number[count:]
+
+
 def find_next_palin(number):
     # exception 9
-    if except_nine(number):
+    if except_digit(number, '9'):
         return add1tostring(add1tostring(number))
+    if except_digit(number, '0'):
+        return '1'
+    number = clean_begin_zero(number)
     length = number.__len__()
     sub = number[0:length/2]
     odd = ""
@@ -86,7 +109,7 @@ def palin():
     listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        listres.append(analyse_palin(expression))
+        listres.append(analyse_palin(expression.replace(" ", "")))
         nb_line -= 1
     res = res.join(listres)
     stdout.write(res)

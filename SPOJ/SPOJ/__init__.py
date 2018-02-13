@@ -39,7 +39,21 @@ def inf_str_int(str1, str2):
     return True
 
 
+def except_digit(number, digit):
+    res = ""
+    listres = []
+    for i in number:
+        listres.append(digit)
+    res = res.join(listres)
+    return number == res
+
+
 def find_next_palin(number):
+    # exception 9
+    if except_digit(number, '9'):
+        return add1tostring(add1tostring(number))
+    if except_digit(number, '0'):
+        return '1'
     length = number.__len__()
     sub = number[0:length/2]
     odd = ""
@@ -59,7 +73,7 @@ def find_next_palin(number):
 
 
 def analyse_palin(expression):
-    res = add1tostring(expression[:-1])
+    res = expression[:-1]
     while True:
         pal = find_next_palin(res)
         res = add1tostring(res)
@@ -76,7 +90,7 @@ def palin():
     listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        listres.append(analyse_palin(expression))
+        listres.append(analyse_palin(expression.replace(" ", "")))
         nb_line -= 1
     res = res.join(listres)
     stdout.write(res)
