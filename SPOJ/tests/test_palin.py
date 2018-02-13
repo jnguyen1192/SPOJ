@@ -73,6 +73,7 @@ class TestPalin(TestCase):
     def test_analyse_palin_14(self):
         input = "999\n"
         res =   "1001\n"
+        print analyse_palin(input)
         assert (analyse_palin(input) == res)
 
     def test_analyse_palin_15(self):
@@ -132,6 +133,11 @@ class TestPalin(TestCase):
         res += analyse_palin(input)
         print res
         #assert (analyse_palin(input) == res)
+
+    def test_analyse_palin_19(self):
+        input = "100\n"
+        res = "101\n"
+        assert (analyse_palin(input) == res)
 
     def test_add1tostring_1(self):
         input = "19"
