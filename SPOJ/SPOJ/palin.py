@@ -1,5 +1,5 @@
 from sys import stdin, stdout
-
+import re
 
 def add1tostring(number):
     s = list(number)
@@ -66,10 +66,13 @@ def clean_begin_zero(number):
     return number[count:]
 
 
+def clean_alpha_from_string(number):
+    return re.sub('[^0-9]', '', number)
+
+
 def find_next_palin(number):
     if except_digit(number, '0'):
         return '1'
-    number = clean_begin_zero(number)
     if except_digit(number, '9'):
         return add1tostring(add1tostring(number))
     length = number.__len__()
@@ -92,6 +95,8 @@ def find_next_palin(number):
 
 def analyse_palin(expression):
     res = expression[:-1]
+    res = clean_alpha_from_string(res)
+    res = clean_begin_zero(res)
     while True:
         pal = find_next_palin(res)
         res = add1tostring(res)
@@ -111,4 +116,4 @@ def palin():
         listres.append(analyse_palin(expression.replace(" ", "")))
         nb_line -= 1
     res = res.join(listres)
-    stdout.write(res)
+    stdout.write(res[:-1])

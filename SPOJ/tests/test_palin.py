@@ -151,13 +151,16 @@ class TestPalin(TestCase):
     def test_analyse_palin_22(self):
         input = "000000099\n"
         res = "101\n"
-        print analyse_palin(input)
         assert (analyse_palin(input) == res)
 
     def test_analyse_palin_23(self):
         input = "99\n"
         res = "101\n"
-        print analyse_palin(input)
+        assert (analyse_palin(input) == res)
+
+    def test_analyse_palin_24(self):
+        input = "00002133\n"
+        res = "2222\n"
         assert (analyse_palin(input) == res)
 
     def test_add1tostring_1(self):
