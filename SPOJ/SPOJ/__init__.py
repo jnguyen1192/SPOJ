@@ -104,7 +104,6 @@ def analyse_palin(expression):
         res = add1tostring(res)
         if is_palin(pal) and pal != expression:
             break
-        # Augmenter l incrementation au bon endroit pour gagner du temps
     pal += "\n"
     return pal
 
