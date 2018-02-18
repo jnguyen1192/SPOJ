@@ -5,13 +5,13 @@ numberdigits = 1000000
 
 def generate():
     file = open("palin.txt", "w")
-    t = 10
+    t = 1
     file.write(str(t) + "\n")
     while t > 0:
         res = ""
-        knumberdigit = random.randint(2, numberdigits)
+        knumberdigit = 1000000
         for i in xrange(0, knumberdigit):
-            kdigit = random.randint(1, 9)
+            kdigit = 9
             res += str(kdigit)
         file.write(res + "\n")
         print res
