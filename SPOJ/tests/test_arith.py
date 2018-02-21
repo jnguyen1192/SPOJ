@@ -38,3 +38,33 @@ class TestArith(TestCase):
         input2 = "96"
         res = "112"
         assert (add_string(input1, input2) == res)
+
+    def test_sub_string_1(self):
+        input1 = "125"
+        input2 = "124"
+        res = "1"
+        assert (sub_string(input1, input2) == res)
+
+    def test_sub_string_2(self):
+        input1 = "125"
+        input2 = "125"
+        res = "0"
+        assert (sub_string(input1, input2) == res)
+
+    def test_sub_string_3(self):
+        input1 = "1001"
+        input2 = "2"
+        res = "999"
+        assert (sub_string(input1, input2) == res)
+
+    def test_sub_string_4(self):
+        input1 = "999"
+        input2 = "1"
+        res = "998"
+        assert (sub_string(input1, input2) == res)
+
+    def test_sub_string_5(self):
+        input1 = "95"
+        input2 = "16"
+        res = "79"
+        assert (sub_string(input1, input2) == res)
