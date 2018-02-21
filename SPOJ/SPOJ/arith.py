@@ -13,7 +13,6 @@ def clean_begin_zero(number):
 
 
 def analyse_arith(expression):
-    res = ''
     pos = expression.find('+')
     if pos != -1:
         res = add_or_sub_string_print(expression[0:pos], expression[pos+1:], '+')
@@ -23,7 +22,7 @@ def analyse_arith(expression):
             res = add_or_sub_string_print(expression[0:pos], expression[pos + 1:], '-')
         else:
             pos = expression.find('*')
-            # case mul_string_print(str1, str2)
+            res = mul_string_print(expression[0:pos], expression[pos + 1:])
     return res
 # keep number 1
 # keep operator

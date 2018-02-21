@@ -163,4 +163,5 @@ class TestArith(TestCase):
         input1 = "1"
         input2 = "123451234567890"
         res = "               1\n*123451234567890\n----------------\n               0\n              9\n             8\n            7\n           6\n          5\n         4\n        3\n       2\n      1\n     5\n    4\n   3\n  2\n 1\n ---------------\n 123451234567890"
+        print mul_string_print('1234', '20')
         assert (mul_string_print(input1, input2) == res)
