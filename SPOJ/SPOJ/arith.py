@@ -24,12 +24,8 @@ def analyse_arith(expression):
             pos = expression.find('*')
             res = mul_string_print(expression[0:pos], expression[pos + 1:])
     return res
-# keep number 1
-# keep operator
-# keep number 2
 
 
-# add string
 def add_string(str1, str2):
     p1 = str1.__len__() - 1
     p2 = str2.__len__() - 1
@@ -58,7 +54,6 @@ def add_string(str1, str2):
     return "".join(l)[::-1]
 
 
-# sub string
 def sub_string(str1, str2):
     if str1 == str2:
         return '0'
@@ -92,7 +87,6 @@ def sub_string(str1, str2):
     return res
 
 
-# mul string
 def mul_string(str1, str2):
     if str2 == '1':
         return str1
@@ -123,7 +117,6 @@ def mul_string(str1, str2):
     return "".join(l)[::-1]
 
 
-# add or sub string print
 def add_or_sub_string_print(str1, str2, op):
     if op == '+':
         res = add_string(str1, str2)
@@ -135,6 +128,7 @@ def add_or_sub_string_print(str1, str2, op):
     nbespacestr1 = 0
     nbespacestr2 = 0
     nbespaceres = 0
+    nbespacetiret = 0
 
     maxlengh = max(lengthstr2+1, lengthres)
     if lengthres <= lengthstr2 and lengthstr1 <= lengthstr2:
@@ -146,14 +140,15 @@ def add_or_sub_string_print(str1, str2, op):
     else:
         nbespacestr1 = lengthres - lengthstr1
         nbespacestr2 = lengthres - lengthstr2 - 1
-    tiret = '-' * maxlengh
     str1 = nbespacestr1 * ' ' + str1
     str2 = nbespacestr2 * ' ' + op + str2
     res = nbespaceres * ' ' + res
+    if res.__len__() > maxlengh:
+        nbespacetiret = res.__len__() - maxlengh
+    tiret = ' ' * nbespacetiret + '-' * maxlengh
     return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
 
 
-# mul string print
 def mul_string_print(str1, str2):
     lengthstr2 = str2.__len__()
     lengthstr1 = str1.__len__()

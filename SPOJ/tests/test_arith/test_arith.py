@@ -166,5 +166,8 @@ class TestArith(TestCase):
         assert (mul_string_print(input1, input2) == res)
 
     def test_compare_res(self):
+        #file = open('arithFind.out', 'w')
+        #file.write(res[:-2])
+        #file.close()
         import filecmp
-        print filecmp.cmp('arithFind.out', 'arithRes.out')
+        assert filecmp.cmp('arithFind.out', 'arithRes.out')
