@@ -156,12 +156,12 @@ def add_or_sub_string_print(str1, str2, op):
 
 # mul string print
 def mul_string_print(str1, str2):
-    if str2.__len__() == 1:
+    lengthstr2 = str2.__len__()
+    if lengthstr2 == 1:
         # case basic op
         res = mul_string(str1, str2)
         lengthres = res.__len__()
         lengthstr1 = str1.__len__()
-        lengthstr2 = str2.__len__()
         nbespaceres = 0
         nbespacestr1 = lengthres - lengthstr1
         nbespacestr2 = lengthres - lengthstr2 - 1
@@ -170,7 +170,35 @@ def mul_string_print(str1, str2):
         str2 = nbespacestr2 * ' ' + '*' + str2
         res = nbespaceres * ' ' + res
         return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
-    return '    325\n  *4405\n  -----\n   1625\n     0\n 1300\n1300\n-------\n1431625'
+    res = ""
+    l = list()
+    l.append(str1)
+    l.append('*' + str2)
+    l.append('-' * (lengthstr2+1))
+    floor1 = mul_string(str1, str2[-1:])
+    l.append(floor1)
+    i = lengthstr2
+    while i > 1:
+        res = add_string(res, floor1+'0'*(lengthstr2-i))
+        floor1 = mul_string(str1, str2[i-lengthstr2-2:i-lengthstr2-1])
+        l.append(floor1)
+        i -= 1
+    res = add_string(res, floor1+'0'*(lengthstr2-i))
+    l.append('-' * res.__len__())
+    l.append(res)
+    # modify strings in list with spaces added
+    maxlengh = l[2].__len__()
+    maxlengh2 = l[-1].__len__()
+    if maxlengh2 > maxlengh:
+        maxlengh = maxlengh2
+    for i in xrange(0, 3):
+        l[i] = ' ' * (maxlengh - l[i].__len__()) + l[i]
+    for i in xrange(3, len(l)-2):
+        l[i] = ' ' * (maxlengh - l[i].__len__()-(i-3)) + l[i]
+    for i in xrange(len(l)-2, len(l)):
+        l[i] = ' ' * (maxlengh - l[i].__len__()) + l[i]
+    return '\n'.join(l)
+
 
 def arith(nb_line):
     res = ""
