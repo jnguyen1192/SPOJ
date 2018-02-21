@@ -156,11 +156,11 @@ def add_or_sub_string_print(str1, str2, op):
 # mul string print
 def mul_string_print(str1, str2):
     lengthstr2 = str2.__len__()
+    lengthstr1 = str1.__len__()
     if lengthstr2 == 1:
         # case basic op
         res = mul_string(str1, str2)
         lengthres = res.__len__()
-        lengthstr1 = str1.__len__()
         nbespaceres = 0
         nbespacestr1 = lengthres - lengthstr1
         nbespacestr2 = lengthres - lengthstr2 - 1
@@ -173,7 +173,13 @@ def mul_string_print(str1, str2):
     l = list()
     l.append(str1)
     l.append('*' + str2)
-    l.append('-' * (lengthstr2+1))
+
+    if lengthstr2+1 > lengthstr1:
+        maxlengh = lengthstr2+1
+    else:
+        maxlengh = lengthstr1
+    print 'maxlengh' + str(maxlengh)
+    l.append('-' * maxlengh)
     floor1 = mul_string(str1, str2[-1:])
     l.append(floor1)
     i = lengthstr2
@@ -183,11 +189,10 @@ def mul_string_print(str1, str2):
         l.append(floor1)
         i -= 1
     res = add_string(res, floor1+'0'*(lengthstr2-i))
-    l.append('-' * res.__len__())
+    maxlengh2 = res.__len__()
+    l.append('-' * maxlengh2)
     l.append(res)
     # modify strings in list with spaces added
-    maxlengh = l[2].__len__()
-    maxlengh2 = l[-1].__len__()
     if maxlengh2 > maxlengh:
         maxlengh = maxlengh2
     for i in xrange(0, 3):
