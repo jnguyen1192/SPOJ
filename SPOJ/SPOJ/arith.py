@@ -13,7 +13,14 @@ def clean_begin_zero(number):
 
 
 def analyse_arith(expression):
-    return " 12345\n+67890\n------\n 80235"
+    res = ''
+    # case +
+    pos = expression.find('+')
+    if pos != -1:
+        res = add_string_print(expression[0:pos], expression[pos+1:])
+    # case -
+    # case *
+    return res
 # keep number 1
 # keep operator
 # keep number 2
@@ -118,31 +125,35 @@ def add_string_print(str1, str2):
     lengthstr1 = str1.__len__()
     lengthstr2 = str2.__len__()
     if lengthres <= lengthstr2 and lengthstr1 <= lengthstr2:
-        print "cas str2 est le plus grand"
-    if lengthres <= lengthstr1 and lengthstr2 <= lengthstr1:
-        print "cas str1 est le plus grand"
+        nbespace = lengthstr2 + 1 - lengthstr1
+        str1 = nbespace * ' ' + str1
+        str2 = '+' + str2
+        tiret = '-' * (lengthstr2 + 1)
+        nbespace = lengthstr2 + 1 - lengthres
+        res = nbespace * ' ' + res
+    elif lengthres <= lengthstr1 and lengthstr2 <= lengthstr1:
         nbespace = lengthstr1 - lengthstr2 - 1
         str2 = nbespace * ' ' + '+' + str2
-        tiret = '-' * lengthres
+        tiret = '-' * lengthstr1
         nbespace = lengthstr1 - lengthres
         res = nbespace * ' ' + res
-        return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
-        # str1 :
-        #   str1
-        # str2 :
-        #       nbespace = lengthres - str2 - 1
-        # str2 = nbespace * ' ' + '+' + str2
-        # nb tiret = lengthres
-        # res sans espace
-    if lengthstr1 <= lengthres and lengthstr2 <= lengthres:
-        print "cas res est le plus grand"
-
+    else:
+        nbespace = lengthres - lengthstr1
+        str1 = nbespace * ' ' + str1
+        nbespace = lengthres - lengthstr2 - 1
+        str2 = nbespace * ' ' + '+' + str2
+        tiret = '-' * lengthres
+    return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
 # sub string print
 # mul string print
 
 def arith():
     nb_line = int(stdin.readline())
+    res = ""
+    listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        stdout.write(analyse_arith(expression))
+        listres.append(analyse_arith(expression) + '\n' * 2)
         nb_line -= 1
+    res = res.join(listres)
+    stdout.write(res[:-2])

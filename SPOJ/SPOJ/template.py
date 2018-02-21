@@ -7,7 +7,11 @@ def analyse_template(expression):
 
 def template():
     nb_line = int(stdin.readline())
+    res = ""
+    listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        stdout.write(analyse_template(expression))
+        listres.append(analyse_template(expression))
         nb_line -= 1
+    res = res.join(listres)
+    stdout.write(res[:-1])

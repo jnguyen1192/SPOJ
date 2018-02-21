@@ -4,7 +4,7 @@ from SPOJ.arith import *
 
 
 class TestArith(TestCase):
-    def test_analyse_arith(self):
+    def test_analyse_arith_add(self):
         input = "12345+67890"
         res = " 12345\n+67890\n------\n 80235"
         assert (analyse_arith(input) == res)
@@ -39,15 +39,24 @@ class TestArith(TestCase):
         res = "112"
         assert (add_string(input1, input2) == res)
 
-    def test_add_string_print_1(self):
-        input1 = "12345+67890"
+    def test_add_string_print_case_str2_longest(self):
+        input1 = "12345"
+        input2 = "67890"
         res = " 12345\n+67890\n------\n 80235"
-        assert (add_string_print(input1) == res)
+        print add_string_print(input1, input2)
+        assert (add_string_print(input1, input2) == res)
 
-    def test_add_string_print_2(self):
+    def test_add_string_print_case_str1_longest(self):
         input1 = "1234"
         input2 = "4"
         res = "1234\n  +4\n----\n1238"
+        print add_string_print(input1, input2)
+        assert (add_string_print(input1, input2) == res)
+
+    def test_add_string_print_case_res_longest(self):
+        input1 = "9999"
+        input2 = "15"
+        res = " 9999\n  +15\n-----\n10014"
         print add_string_print(input1, input2)
         assert (add_string_print(input1, input2) == res)
 
