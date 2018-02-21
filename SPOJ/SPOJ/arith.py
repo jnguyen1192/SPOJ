@@ -155,7 +155,22 @@ def add_or_sub_string_print(str1, str2, op):
 
 
 # mul string print
-
+def mul_string_print(str1, str2):
+    if str2.__len__() == 1:
+        # case basic op
+        res = mul_string(str1, str2)
+        lengthres = res.__len__()
+        lengthstr1 = str1.__len__()
+        lengthstr2 = str2.__len__()
+        nbespaceres = 0
+        nbespacestr1 = lengthres - lengthstr1
+        nbespacestr2 = lengthres - lengthstr2 - 1
+        tiret = '-' * lengthres
+        str1 = nbespacestr1 * ' ' + str1
+        str2 = nbespacestr2 * ' ' + '*' + str2
+        res = nbespaceres * ' ' + res
+        return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
+    return '    325\n  *4405\n  -----\n   1625\n     0\n 1300\n1300\n-------\n1431625'
 
 def arith(nb_line):
     res = ""

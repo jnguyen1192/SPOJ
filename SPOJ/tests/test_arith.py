@@ -146,3 +146,15 @@ class TestArith(TestCase):
         input2 = "1"
         res = "9502000202151515150505151515106061615150505151451505020515154544151358768453123203156165165135131515103220321351561612032035453153213213"
         assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_print_case_res_longest(self):
+        input1 = "325"
+        input2 = "4405"
+        res = "    325\n  *4405\n  -----\n   1625\n     0\n 1300\n1300\n-------\n1431625"
+        assert (mul_string_print(input1, input2) == res)
+
+    def test_mul_string_print_case_str2_length__equals_1(self):
+        input1 = "2354"
+        input2 = "8"
+        res = " 2354\n   *8\n-----\n18832"
+        assert (mul_string_print(input1, input2) == res)

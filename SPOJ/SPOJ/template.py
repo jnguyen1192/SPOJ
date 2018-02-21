@@ -11,7 +11,7 @@ def template():
     listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        listres.append(analyse_template(expression))
+        listres.append(analyse_template(expression[:-1] + '\n' * 1))
         nb_line -= 1
     res = res.join(listres)
     stdout.write(res[:-1])
