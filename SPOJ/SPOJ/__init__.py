@@ -136,18 +136,18 @@ def add_or_sub_string_print(str1, str2, op):
     nbespacestr1 = 0
     nbespacestr2 = 0
     nbespaceres = 0
+
+    maxlengh = max(lengthstr2+1, lengthres)
     if lengthres <= lengthstr2 and lengthstr1 <= lengthstr2:
         nbespacestr1 = lengthstr2 + 1 - lengthstr1
-        tiret = '-' * (lengthstr2 + 1)
         nbespaceres = lengthstr2 + 1 - lengthres
     elif lengthres <= lengthstr1 and lengthstr2 <= lengthstr1:
         nbespacestr2 = lengthstr1 - lengthstr2 - 1
-        tiret = '-' * lengthstr1
         nbespaceres = lengthstr1 - lengthres
     else:
         nbespacestr1 = lengthres - lengthstr1
         nbespacestr2 = lengthres - lengthstr2 - 1
-        tiret = '-' * lengthres
+    tiret = '-' * maxlengh
     str1 = nbespacestr1 * ' ' + str1
     str2 = nbespacestr2 * ' ' + op + str2
     res = nbespaceres * ' ' + res
@@ -176,7 +176,7 @@ def mul_string_print(str1, str2):
     l.append('*' + str2)
 
     floor1 = mul_string(str1, str2[-1:])
-    maxlengh = max(lengthstr2+1, lengthstr1, floor1.__len__())
+    maxlengh = max(lengthstr2+1, floor1.__len__())
     l.append('-' * maxlengh)
 
     l.append(floor1)
