@@ -175,9 +175,6 @@ def mul_string_print(str1, str2):
     l.append('*' + str2)
 
     floor1 = mul_string(str1, str2[-1:])
-    print lengthstr2+1
-    print lengthstr1
-    print floor1.__len__()
     maxlengh = max(lengthstr2+1, lengthstr1, floor1.__len__())
     l.append('-' * maxlengh)
 
