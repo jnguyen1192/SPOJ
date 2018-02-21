@@ -43,22 +43,19 @@ class TestArith(TestCase):
         input1 = "12345"
         input2 = "67890"
         res = " 12345\n+67890\n------\n 80235"
-        print add_string_print(input1, input2)
-        assert (add_string_print(input1, input2) == res)
+        assert (add_or_sub_string_print(input1, input2, '+') == res)
 
     def test_add_string_print_case_str1_longest(self):
         input1 = "1234"
         input2 = "4"
         res = "1234\n  +4\n----\n1238"
-        print add_string_print(input1, input2)
-        assert (add_string_print(input1, input2) == res)
+        assert (add_or_sub_string_print(input1, input2, '+') == res)
 
     def test_add_string_print_case_res_longest(self):
         input1 = "9999"
         input2 = "15"
         res = " 9999\n  +15\n-----\n10014"
-        print add_string_print(input1, input2)
-        assert (add_string_print(input1, input2) == res)
+        assert (add_or_sub_string_print(input1, input2, '+') == res)
 
     def test_sub_string_1(self):
         input1 = "125"
@@ -89,6 +86,18 @@ class TestArith(TestCase):
         input2 = "16"
         res = "79"
         assert (sub_string(input1, input2) == res)
+
+    def test_sub_string_print_case_str2_longest(self):
+        input1 = "67890"
+        input2 = "12345"
+        res = " 67890\n-12345\n------\n 55545"
+        assert (add_or_sub_string_print(input1, input2, '-') == res)
+
+    def test_sub_string_print_case_str1_equals_str2(self):
+        input1 = "1000"
+        input2 = "1000"
+        res = " 1000\n-1000\n-----\n    0"
+        assert (add_or_sub_string_print(input1, input2, '-') == res)
 
     def test_mul_string_1(self):
         input1 = "325"

@@ -14,12 +14,16 @@ def clean_begin_zero(number):
 
 def analyse_arith(expression):
     res = ''
-    # case +
     pos = expression.find('+')
     if pos != -1:
-        res = add_string_print(expression[0:pos], expression[pos+1:])
-    # case -
-    # case *
+        res = add_or_sub_string_print(expression[0:pos], expression[pos+1:], '+')
+    else:
+        pos = expression.find('-')
+        if pos != -1:
+            res = add_or_sub_string_print(expression[0:pos], expression[pos + 1:], '-')
+        else:
+            pos = expression.find('*')
+            # case mul_string_print(str1, str2)
     return res
 # keep number 1
 # keep operator
@@ -57,6 +61,8 @@ def add_string(str1, str2):
 
 # sub string
 def sub_string(str1, str2):
+    if str1 == str2:
+        return '0'
     p1 = str1.__len__() - 1
     p2 = str2.__len__() - 1
     l = []
@@ -118,42 +124,45 @@ def mul_string(str1, str2):
     return "".join(l)[::-1]
 
 
-# add string print
-def add_string_print(str1, str2):
-    res = add_string(str1, str2)
+# add or sub string print
+def add_or_sub_string_print(str1, str2, op):
+    if op == '+':
+        res = add_string(str1, str2)
+    else:
+        res = sub_string(str1, str2)
     lengthres = res.__len__()
     lengthstr1 = str1.__len__()
     lengthstr2 = str2.__len__()
+    nbespacestr1 = 0
+    nbespacestr2 = 0
+    nbespaceres = 0
     if lengthres <= lengthstr2 and lengthstr1 <= lengthstr2:
-        nbespace = lengthstr2 + 1 - lengthstr1
-        str1 = nbespace * ' ' + str1
-        str2 = '+' + str2
+        nbespacestr1 = lengthstr2 + 1 - lengthstr1
         tiret = '-' * (lengthstr2 + 1)
-        nbespace = lengthstr2 + 1 - lengthres
-        res = nbespace * ' ' + res
+        nbespaceres = lengthstr2 + 1 - lengthres
     elif lengthres <= lengthstr1 and lengthstr2 <= lengthstr1:
-        nbespace = lengthstr1 - lengthstr2 - 1
-        str2 = nbespace * ' ' + '+' + str2
+        nbespacestr2 = lengthstr1 - lengthstr2 - 1
         tiret = '-' * lengthstr1
-        nbespace = lengthstr1 - lengthres
-        res = nbespace * ' ' + res
+        nbespaceres = lengthstr1 - lengthres
     else:
-        nbespace = lengthres - lengthstr1
-        str1 = nbespace * ' ' + str1
-        nbespace = lengthres - lengthstr2 - 1
-        str2 = nbespace * ' ' + '+' + str2
+        nbespacestr1 = lengthres - lengthstr1
+        nbespacestr2 = lengthres - lengthstr2 - 1
         tiret = '-' * lengthres
+    str1 = nbespacestr1 * ' ' + str1
+    str2 = nbespacestr2 * ' ' + op + str2
+    res = nbespaceres * ' ' + res
     return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
-# sub string print
+
+
 # mul string print
 
-def arith():
-    nb_line = int(stdin.readline())
+
+def arith(nb_line):
     res = ""
     listres = []
     while nb_line != 0:
         expression = stdin.readline()
-        listres.append(analyse_arith(expression) + '\n' * 2)
+        listres.append(analyse_arith(expression[:-1]) + '\n' * 2)
         nb_line -= 1
     res = res.join(listres)
     stdout.write(res[:-2])
