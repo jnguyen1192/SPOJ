@@ -1,6 +1,7 @@
 from sys import stdin, stdout
 import math
 
+
 def clean_begin_zero(number):
     count = 0
     for i in number:
@@ -101,7 +102,6 @@ def mul_string(str1, str2):
             mul = num1 * num2
         if mul > 9:
             ret = mul // 10 ** (int(math.log(mul, 10)) - 1 + 1)
-            #print 'ret ' + str(ret)
             #https://stackoverflow.com/questions/41271299/how-can-i-get-the-first-two-digits-of-a-number
             mul %= 10
         l.append(str(mul))
@@ -110,6 +110,35 @@ def mul_string(str1, str2):
         l.append(str(ret))
     return "".join(l)[::-1]
 
+
+# add string print
+def add_string_print(str1, str2):
+    res = add_string(str1, str2)
+    lengthres = res.__len__()
+    lengthstr1 = str1.__len__()
+    lengthstr2 = str2.__len__()
+    if lengthres <= lengthstr2 and lengthstr1 <= lengthstr2:
+        print "cas str2 est le plus grand"
+    if lengthres <= lengthstr1 and lengthstr2 <= lengthstr1:
+        print "cas str1 est le plus grand"
+        nbespace = lengthstr1 - lengthstr2 - 1
+        str2 = nbespace * ' ' + '+' + str2
+        tiret = '-' * lengthres
+        nbespace = lengthstr1 - lengthres
+        res = nbespace * ' ' + res
+        return str1 + '\n' + str2 + '\n' + tiret + '\n' + res
+        # str1 :
+        #   str1
+        # str2 :
+        #       nbespace = lengthres - str2 - 1
+        # str2 = nbespace * ' ' + '+' + str2
+        # nb tiret = lengthres
+        # res sans espace
+    if lengthstr1 <= lengthres and lengthstr2 <= lengthres:
+        print "cas res est le plus grand"
+
+# sub string print
+# mul string print
 
 def arith():
     nb_line = int(stdin.readline())

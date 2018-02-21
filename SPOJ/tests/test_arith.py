@@ -39,6 +39,18 @@ class TestArith(TestCase):
         res = "112"
         assert (add_string(input1, input2) == res)
 
+    def test_add_string_print_1(self):
+        input1 = "12345+67890"
+        res = " 12345\n+67890\n------\n 80235"
+        assert (add_string_print(input1) == res)
+
+    def test_add_string_print_2(self):
+        input1 = "1234"
+        input2 = "4"
+        res = "1234\n  +4\n----\n1238"
+        print add_string_print(input1, input2)
+        assert (add_string_print(input1, input2) == res)
+
     def test_sub_string_1(self):
         input1 = "125"
         input2 = "124"
