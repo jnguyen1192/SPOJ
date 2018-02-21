@@ -68,3 +68,51 @@ class TestArith(TestCase):
         input2 = "16"
         res = "79"
         assert (sub_string(input1, input2) == res)
+
+    def test_mul_string_1(self):
+        input1 = "325"
+        input2 = "0"
+        res = "0"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_2(self):
+        input1 = "325"
+        input2 = "4"
+        res = "1300"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_3(self):
+        input1 = "1234"
+        input2 = "4"
+        res = "4936"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_4(self):
+        input1 = "999"
+        input2 = "1"
+        res = "999"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_5(self):
+        input1 = "95"
+        input2 = "6"
+        res = "570"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_6(self):
+        input1 = "1000"
+        input2 = "6"
+        res = "6000"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_7(self):
+        input1 = "9502000202151515150505151515106061615150505151451505020515154544151358768453123203156165165135131515103220321351561612032035453153213213"
+        input2 = "0"
+        res = "0"
+        assert (mul_string(input1, input2) == res)
+
+    def test_mul_string_8(self):
+        input1 = "9502000202151515150505151515106061615150505151451505020515154544151358768453123203156165165135131515103220321351561612032035453153213213"
+        input2 = "1"
+        res = "9502000202151515150505151515106061615150505151451505020515154544151358768453123203156165165135131515103220321351561612032035453153213213"
+        assert (mul_string(input1, input2) == res)

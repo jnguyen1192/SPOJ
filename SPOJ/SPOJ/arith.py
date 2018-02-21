@@ -1,5 +1,5 @@
 from sys import stdin, stdout
-
+import math
 
 def clean_begin_zero(number):
     count = 0
@@ -16,6 +16,7 @@ def analyse_arith(expression):
 # keep number 1
 # keep operator
 # keep number 2
+
 
 # add string
 def add_string(str1, str2):
@@ -76,7 +77,39 @@ def sub_string(str1, str2):
     if res == '':
         res = '0'
     return res
+
+
 # mul string
+def mul_string(str1, str2):
+    if str2 == '1':
+        return str1
+    if str2 == '0':
+        return '0'
+    p1 = str1.__len__() - 1
+    num2 = int(str2)
+    l = []
+    ret = 0
+    while p1 > -1 or ret == 1:
+        if p1 < 0:
+            num1 = 0
+        else:
+            num1 = int(str1[p1])
+        if ret > 0:
+            mul = num1 * num2 + ret
+            ret = 0
+        else:
+            mul = num1 * num2
+        if mul > 9:
+            ret = mul // 10 ** (int(math.log(mul, 10)) - 1 + 1)
+            #print 'ret ' + str(ret)
+            #https://stackoverflow.com/questions/41271299/how-can-i-get-the-first-two-digits-of-a-number
+            mul %= 10
+        l.append(str(mul))
+        p1 -= 1
+    if ret > 0:
+        l.append(str(ret))
+    return "".join(l)[::-1]
+
 
 def arith():
     nb_line = int(stdin.readline())
