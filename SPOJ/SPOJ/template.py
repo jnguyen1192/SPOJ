@@ -5,8 +5,7 @@ def analyse_template(expression):
     return expression
 
 
-def template():
-    nb_line = int(stdin.readline())
+def template(nb_line):
     res = ""
     listres = []
     while nb_line != 0:

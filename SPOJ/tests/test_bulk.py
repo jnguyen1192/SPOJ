@@ -4,7 +4,7 @@ from SPOJ.bulk import *
 
 
 class TestBulk(TestCase):
-    def test_analyse_bulk(self):
-        input = "bulk\n"
-        res = "bulk\n"
-        assert (analyse_bulk(input) == res)
+    def test_analyse_poly(self):
+        input = "4  0 0 200  10 0 200  10 10 200  0 10 200"
+        res = "['4', '0 0 200', '10 0 200', '10 10 200', '0 10 200']"
+        assert (analyse_poly(input) == res)

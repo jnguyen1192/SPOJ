@@ -1,9 +1,9 @@
 #!/usr/bin/python
-from SPOJ.arith import *
+from SPOJ.bulk import *
 
 
 def main():
-    arith(int(stdin.readline()))
+    bulk(int(stdin.readline()))
 
 if __name__ == "__main__":
     main()
