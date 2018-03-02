@@ -1,9 +1,9 @@
 #!/usr/bin/python
-from SPOJ.bulk import *
+from SPOJ.easypie import *
 
 
 def main():
-    bulk(int(stdin.readline()))
+    easypie(int(stdin.readline()))
 
 if __name__ == "__main__":
     main()
