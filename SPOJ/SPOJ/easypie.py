@@ -64,7 +64,7 @@ def analyse_easypie(nb_line):
     scores = Scores()
     while nb_line != 0:
         expression = stdin.readline()
-        c_p_t = analyse_scores(expression[:-1]).split(' ')
+        c_p_t = analyse_scores(expression).split(' ')
         scores.update_scores(c_p_t)
         nb_line -= 1
     return scores.print_scores()
