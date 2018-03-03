@@ -18,6 +18,7 @@ class Scores:
     def update_scores(self, t):
         # select right prob
         i = self.prob.index(t[0])
+        # select if the team exists on the teams
         thing_index = self.teams[i].index(t[2]) if t[2] in self.teams[i] else -1
         # prob solve for the first time
         if thing_index == -1 and t[3] == 'A':
@@ -29,7 +30,7 @@ class Scores:
             self.teams[i].append(t[2])
             # add submission count
             self.submission[i] += 1
-
+        # prob not solve yet
         if thing_index == -1 and t[3] == 'R':
             # add submission count
             self.submission[i] += 1
@@ -64,7 +65,7 @@ def analyse_easypie(nb_line):
     scores = Scores()
     while nb_line != 0:
         expression = stdin.readline()
-        c_p_t = analyse_scores(expression).split(' ')
+        c_p_t = analyse_scores(expression).replace("\n", "").split(' ')
         scores.update_scores(c_p_t)
         nb_line -= 1
     return scores.print_scores()
