@@ -6,6 +6,7 @@ class Scores:
     time = []
     c = []
     teams = []
+    all_teams = []
     submission = []
 
     def __init__(self):
@@ -13,27 +14,34 @@ class Scores:
         self.time = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.c = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.teams = [[], [], [], [], [], [], [], [], []]
-        self.submission = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.all_teams = [[], [], [], [], [], [], [], [], []]
+        self.submission = [[], [], [], [], [], [], [], [], []]
+        self.submission_avg = [[], [], [], [], [], [], [], [], []]
 
     def update_scores(self, t):
         # select right prob
         i = self.prob.index(t[0])
         # select if the team exists on the teams
         thing_index = self.teams[i].index(t[2]) if t[2] in self.teams[i] else -1
+        # select if the team exists on submission team
+        thing_index_exist = self.all_teams[i].index(t[2]) if t[2] in self.all_teams[i] else -1
+        # prob not solve yet
+        # add the team in a list from correct prob if it doesn t exist
+        if thing_index_exist == -1:
+            self.all_teams[i].append(t[2])
+            self.submission[i].append(1)
+        # incr the number of submission on this prob
+        else:
+            self.submission[i][thing_index_exist] += 1
         # prob solve for the first time
         if thing_index == -1 and t[3] == 'A':
+            self.submission_avg[i].append(self.submission[i][thing_index_exist])
             # add time to prob
             self.time[i] += int(t[1])
             # add c to prob
             self.c[i] += 1
             # add new team
             self.teams[i].append(t[2])
-            # add submission count
-            self.submission[i] += 1
-        # prob not solve yet
-        if thing_index == -1 and t[3] == 'R':
-            # add submission count
-            self.submission[i] += 1
 
     def print_scores(self):
         # build final display
@@ -43,7 +51,7 @@ class Scores:
         timedivid = [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
         for i in range(0, 9):
             if self.c[i] != 0:
-                divid[i] = float(self.submission[i]) / float(self.c[i])
+                divid[i] = float(sum(self.submission_avg[i])) / float(len(self.submission_avg[i]))
                 timedivid[i] = float(self.time[i])/self.c[i]
         for i in range(0, 9):
             if self.c[i] != 0:
