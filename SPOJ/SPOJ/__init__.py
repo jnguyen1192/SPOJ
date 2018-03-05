@@ -1,9 +1,9 @@
 #!/usr/bin/python
-from SPOJ.easypie import *
+from SPOJ.fctrl import *
 
 
 def main():
-    easypie(int(stdin.readline()))
+    fctrl(int(stdin.readline()))
 
 if __name__ == "__main__":
     main()
