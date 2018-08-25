@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from SPOJ.prime1 import *
-
+from sys import stdin, stdout
 
 class TestPrime1(TestCase):
     def test_find_prime_between_born_min(self):

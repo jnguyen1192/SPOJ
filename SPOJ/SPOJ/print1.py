@@ -1,5 +1,7 @@
 import time
 from sys import stdin, stdout
+import numpy
+import math
 
 
 def print1():
@@ -17,6 +19,25 @@ def print1():
     t = time.clock() - t0
     print str(t) + " seconds"
 
+# TO DO
+# Utiliser le meme tableau de nombre premier genere
+
+'''
+def primes(n):
+    # Find all primes n > prime > 2 using the Sieve of Eratosthenes
+    # For efficiency, track only odd numbers (evens are nonprime)
+
+    sieve = numpy.ones(n / 2, dtype=numpy.bool)
+    limit = int(math.sqrt(n)) + 1
+
+    for i in range(3, limit, 2):
+        if sieve[i / 2]:
+            sieve[i * i / 2:: i] = False
+
+    prime_indexes = numpy.nonzero(sieve)[0][1::]
+    prms = 2 * prime_indexes.astype(numpy.int32) + 1
+    return prms
+'''
 
 def primes(n):
     n, correction = n-n%6+6, 2-(n%6>1)
@@ -37,6 +58,7 @@ arrayLimitPrime = primes(46441)
 def primesRange(lo, hi, delta):
     # Dirty 1
     hi += 1
+
     def qInit(p):
         return ((lo + p + 1) / -2) % p
 

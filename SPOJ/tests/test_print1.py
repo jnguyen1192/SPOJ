@@ -28676,6 +28676,6 @@ class TestPrint1(TestCase):
         # 2146483647 to  2147483647
 
     def test_test(self):
-        print primesRange(2, 1000002, 1000000)
+        stdout.write(primesRange(2, 6000002, 6000000))
 
 
